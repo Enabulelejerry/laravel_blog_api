@@ -20,9 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register',[AuthController::class, 'Register']);
 Route::post('/login',[AuthController::class, 'Login']);
 
-Route::post('/add/post',[PostController::class,'AddPost']);
+Route::get('/get/posts',[PostController::class,'getPost']);
+Route::get('/single/post/{id}',[PostController::class,'SinglePost']);
+Route::get('/delete/post/{id}',[PostController::class,'DeletePost']);
 Route::group(['middleware'=>['auth:api']],function(){
     Route::post('/user/update',[AuthController::class,'updateUser']);  
     Route::post('/user/delete',[AuthController::class,'deleteUser']);
+    Route::post('/add/post',[PostController::class,'AddPost']);
+    Route::post('/update/post/{id}',[PostController::class,'UpdatePost']);
+    
     
 });
